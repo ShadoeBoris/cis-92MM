@@ -2,4 +2,4 @@
 
 This repository has the starter code for CIS-92. 
 
-Author: Boris T. Jocoy
+Author: Boris Jocoy
