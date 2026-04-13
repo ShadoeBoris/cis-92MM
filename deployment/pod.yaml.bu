@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: django
+  labels:
+    function: app
+spec:
+  securityContext:
+    fsGroup: 1000
+  containers:
+    - name: dokuwiki-container
+      image: dokuwiki/dokuwiki:stable
+      ports:
+        - containerPort: 8080
+      resources:
+        requests:
+          cpu: 1000m 
+          memory: 512Mi
+          ephemeral-storage: 10Mi
+        limits:
+          cpu: 1000m 
+          memory: 512Mi
+          ephemeral-storage: 10Mi
+      volumeMounts:
+      - name: db
+        mountPath: /data
+      env:
+      - name: STUDENT_NAME
+        value: "Boris Jocoy"
+      - name: SITE_NAME
+        value: "*"
+      envFrom:
+      - configMapRef:
+          name: mysite-config
+      - secretRef:
+          name: mysite-secret
+      volumes:
+      - name: db
+        persistentVolumeClaim:
+            claimName: mysite-data

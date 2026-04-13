@@ -17,11 +17,10 @@ ENV SITE_NAME="www.cis-92.com"
 ENV SECRET_KEY="fixme-12345"
 ENV DEBUG=1
 ENV DATA_DIR="/data"
-ENV PORT=8000 # class code was 8080 corrected
+ENV PORT=8080
 ENV DJANGO_SUPERUSER_NAME="test"
 ENV DJANGO_SUPERUSER_EMAIL="test@test.test"
 ENV DJANGO_SUPERUSER_PASSWORD="test"
-
 
 # Create the data directory
 RUN mkdir $DATA_DIR && chown django:django $DATA_DIR 
