@@ -1,26 +1,26 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: django
   labels:
     function: app
     version: v1
+  name: django
 spec:
   containers:
   - name: django
-    image: ghcr.io/shadoeboris/cis-92mm:latest
+    image: ghcr.io/shadoeboris/cis-92mm:milestone-5.2
     ports:
     - containerPort: 8080
     resources:
       requests:
         cpu: 1000m
-        memory: 512Mi
         ephemeral-storage: 10Mi
+        memory: 512Mi
       limits:
         cpu: 1000m
-        memory: 512Mi
         ephemeral-storage: 10Mi
-    env:
+        memory: 512Mi
+  - env:
     - name: STUDENT_NAME
       value: "Boris Jocoy"
     - name: SITE_NAME
@@ -39,5 +39,19 @@ spec:
       value: "password"
     - name: DJANGO_SUPERUSER_EMAIL 
       value: "admin@admin.com"
-  nodeSelector:
-    kubernetes.io/arch: arm64
+
+  envFrom:
+  - configMapRef:
+      name: mysite-config
+  - secretRef:  
+      name: mysite-secret
+  volumeMounts:
+  - mountPath: /data
+    name: db
+  volumes:
+  - name: db
+    persistentVolumeClaim:
+      claimName: mysite-data
+  securityContext:
+    fsGroup: 1000
+
