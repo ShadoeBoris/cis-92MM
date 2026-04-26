@@ -6,12 +6,14 @@ metadata:
     function: app
     version: v1
 spec:
+  securityContext:
+    fsGroup: 1000
   containers:
   - name: django
-    image: ghcr.io/shadoeboris/cis-92mm:v9.1.1
+    image: ghcr.io/shadoeboris/cis-92mm:latest
     envFrom:
       - configMapRef:
-          name: mysite-config
+           name: mysite-config
       - secretRef:
           name: mysite-secret
     ports:
@@ -25,6 +27,9 @@ spec:
         cpu: 1000m
         memory: 512Mi
         ephemeral-storage: 10Mi
+    volumeMounts:
+    - name: db
+      mountPath: /data   
     env:
     - name: STUDENT_NAME
       value: "Boris Jocoy"
@@ -44,4 +49,9 @@ spec:
       value: "password"
     - name: DJANGO_SUPERUSER_EMAIL 
       value: "admin@admin.com"
+  volumes:
+  - name: db
+    persistentVolumeClaim:
+      claimName: mysite-data
+
 
