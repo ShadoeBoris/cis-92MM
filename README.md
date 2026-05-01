@@ -20,5 +20,4 @@ Author: Boris Jocoy
 | --- | --- | --- | 
 | SECRET_KEY | "this-is-a-bad-key" | Secret key string...must match in other locations.  | 
 | POSTGRES_PASSWORD | "this-is-a-bad-password" | Password string must match in other locations. | 
-| POSTGRES_USER | "mysiteuser"
-"mysiteuser" | Username for postgres database. | 
+| POSTGRES_USER | "mysiteuser" | Username for postgres database. | 
