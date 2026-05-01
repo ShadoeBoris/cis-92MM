@@ -18,3 +18,26 @@ Author: Boris Jocoy
 | **SECRET_KEY** | "this-is-a-bad-key" | *Secret key string - must match in other locations.*  | 
 | **POSTGRES_PASSWORD** | "this-is-a-bad-password" | *Password string - must match in other locations.* | 
 | **POSTGRES_USER** | "mysiteuser" | *Username for postgres database.* | 
+
+
+**CIS-92MM Deployment Instructions**
+
+In order to deploy this application to a Kubernetes cluster run the following command from project folder in your cluster:  
+
+**kubectl apply -f deployment/**
+
+Once deployement is applied, acquire the external IP address once assigned by running the following command:
+
+**kubectl get all**
+
+The issued ip address may take awhile, you may opt to use the following command to watch for the new ip address to be issued:
+
+**watch kubectl get all**
+
+Commence testing by visiting the external ip address in your web browser.
+
+Once testing is completed you can unload/delete the deployment with the folowing command:
+
+**kubectl delete -f deployment/**
+
+Please bring your seats to the upright position...
