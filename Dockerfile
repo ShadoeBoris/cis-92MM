@@ -38,4 +38,5 @@ WORKDIR /app
 # Default command to execute in the container
 CMD ["/bin/sh", "-c", "./start.sh"]
 
+# test
 
