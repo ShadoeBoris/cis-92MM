@@ -15,9 +15,4 @@ jobs:
       - name: Login to Registry
         run: echo "${{ secrets.REGISTRY_TOKEN }}" | docker login -u "${{ secrets.REGISTRY_USER }}"
 
-      - name: Build and Push ARM64 Image
-        run: |
-          docker buildx build \
-            --platform linux/arm64 \
-            -t yourregistry/app:latest \
-            --push .
+      
