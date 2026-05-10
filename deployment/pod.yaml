@@ -10,7 +10,7 @@ spec:
     fsGroup: 1000
   containers:
   - name: django
-    image: ghcr.io/shadoeboris/cis-92mm@sha256:c5a34621b81db0aa024f4cc8384c8ad59d1f83fab51a075e560d399da0a1ff4a
+    image: ghcr.io/shadoeboris/cis-92mm@sha256:c6a31403dd189c4a05965ccf311723685417c714eec7bffe2a08ca595ed161b8
     envFrom:
       - configMapRef:
            name: mysite-config
