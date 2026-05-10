@@ -6,6 +6,8 @@ metadata:
     function: app
     version: v1
 spec:
+  securityContext:
+    fsGroup: 1000
   containers:
   - name: django
     image: ghcr.io/shadoeboris/cis-92mm:v9.1.1
@@ -14,6 +16,9 @@ spec:
           name: mysite-config
       - secretRef:
           name: mysite-secret
+    volumeMounts:
+    - name: db
+      mountPath: /data
     ports:
     - containerPort: 8080
     resources:
@@ -44,4 +49,7 @@ spec:
       value: "password"
     - name: DJANGO_SUPERUSER_EMAIL 
       value: "admin@admin.com"
-
+  volumes:
+  - name: db
+    persistentVolumeClaim:
+        claimName: mysite-data
