@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mysite-config
+  name: django
 data:
     PORT: "8080"
     STUDENT_NAME: "Boris Jocoy"

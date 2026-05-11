@@ -55,8 +55,8 @@ Commence testing by visiting the external ip address in your web browser.  This 
 
 To log in to the Django Administration, the default admin login credentials are:
 
-**U: admin**
-**P: password**
+**U: test**
+**P: test**
 
 **Deletion Instructions**
 Once testing is completed you can unload/delete the deployment and delete the database with the following commands:

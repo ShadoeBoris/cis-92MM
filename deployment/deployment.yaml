@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django
+  labels:
+    function: app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      function: app
+  template:
+    metadata:
+      labels:
+        function: app
+    spec:
+      containers:
+      - name: django
+        image: ghcr.io/shadoeboris/cis-92mm@sha256:c6a31403dd189c4a05965ccf311723685417c714eec7bffe2a08ca595ed161b8
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 512Mi
+            ephemeral-storage: 10Mi
+          limits:
+            cpu: 1000m
+            memory: 512Mi
+            ephemeral-storage: 10Mi    
+        envFrom:
+          - configMapRef:
+              name: mysite-config
+          - secretRef:
+              name: mysite-secret
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 512Mi
+            ephemeral-storage: 10Mi
+          limits:
+            cpu: 1000m
+            memory: 512Mi
+            ephemeral-storage: 10Mi
+      securityContext:
+        fsGroup: 1000
